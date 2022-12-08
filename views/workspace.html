@@ -548,7 +548,7 @@
 
         //insert listener about my change
         my_workspace.addChangeListener((event) => {
-            if (event.type === Blockly.Events.BLOCK_MOVE || event.type === Blockly.Events.BLOCK_CHANGE
+            if (event.type === Blockly.Events.BLOCK_MOVE 
                 || event.type == Blockly.Events.BLOCK_CREATE || event.type == Blockly.Events.BLOCK_DELETE) {
                 var workspace_my_xml = Blockly.Xml.workspaceToDom(my_workspace);
                 console.log("push data!")
