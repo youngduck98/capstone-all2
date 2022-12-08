@@ -84,7 +84,9 @@ router.get('/:hostWorkSpaceId', isLoggedIn, async(req, res, next) => {
         // 내 워크스페이스가 존재?
         if(exWorkSpace){
             const myWorkSpace = await WorkSpace.findOne({
-                id: exWorkSpace.subWorkSpaceId,
+                where: {
+                    id: exWorkSpace.subWorkSpaceId,
+                }
             });
             req.session.myWorkSpace = myWorkSpace;
             req.app.get('io').to(req.params.hostWorkSpaceId).emit('join_ex', {
@@ -108,6 +110,7 @@ router.get('/:hostWorkSpaceId', isLoggedIn, async(req, res, next) => {
             });
         }
 
+        // console.log(req.session.myWorkSpace.id);
         res.render('workspace', {
             workSpaceGroups,
             chats,
